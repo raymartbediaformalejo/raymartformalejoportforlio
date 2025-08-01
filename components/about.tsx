@@ -28,10 +28,10 @@ export default function About() {
 
       <p>
         <span className="italic">My tech stach includes</span>{" "}
-        <span className="font-medium">React.js</span> ,{" "}
+        <span className="font-medium">ReactJS</span> ,{" "}
         <span className="font-medium">Next.js</span> ,{" "}
         <span className="font-medium">TypeScript</span>,{" "}
-        <span className="font-medium">Node.js</span>,
+        <span className="font-medium">NodeJS</span>,
         <span className="font-medium">MongoDB</span>,{" "}
         <span className="font-medium">PostgreSQL</span>,{" "}
         <span className="font-medium">Redux</span>,{" "}

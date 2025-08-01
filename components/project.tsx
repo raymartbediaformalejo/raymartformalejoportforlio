@@ -23,7 +23,11 @@ export default function Project({
   const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
 
   const handleClick = () => {
-    window.open(href, "_blank");
+    if (!href) {
+      return;
+    } else {
+      window.open(href, "_blank");
+    }
   };
 
   return (
