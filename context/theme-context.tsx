@@ -18,32 +18,31 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 export default function ThemeContextProvider({
   children,
 }: ThemeContextProviderProps) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("dark"); // ✅ default dark
 
-  const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      window.localStorage.setItem("theme", "dark");
+  const applyTheme = (newTheme: Theme) => {
+    setTheme(newTheme);
+    window.localStorage.setItem("theme", newTheme);
+
+    if (newTheme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
-      setTheme("light");
-      window.localStorage.setItem("theme", "light");
       document.documentElement.classList.remove("dark");
     }
+  };
+
+  const toggleTheme = () => {
+    applyTheme(theme === "light" ? "dark" : "light");
   };
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem("theme") as Theme | null;
 
     if (localTheme) {
-      setTheme(localTheme);
-
-      if (localTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      }
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
+      applyTheme(localTheme);
+    } else {
+      // ✅ first render = dark
+      applyTheme("dark");
     }
   }, []);
 
